@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Valentine 💘</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff4e8a,#ff9a9e);
+    font-family:Arial, sans-serif;
+    overflow:hidden;
+    text-align:center;
+    color:white;
+}
+
+.container{
+    position:relative;
+    width:90%;
+    max-width:350px;
+}
+
+h1{
+    font-size:22px;
+    margin-bottom:25px;
+    animation:fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+.buttons{
+    position:relative;
+    height:80px;
+}
+
+button{
+    padding:10px 20px;
+    font-size:16px;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+    transition:all 0.3s ease;
+}
+
+.yes{
+    background:#ff0066;
+    color:white;
+}
+
+.no{
+    background:white;
+    color:#ff0066;
+    position:absolute;
+    left:60%;
+    top:0;
+}
+
+.heart{
+    position:absolute;
+    font-size:22px;
+    animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+    0%{transform:translateY(-20px); opacity:1;}
+    100%{transform:translateY(100vh); opacity:0;}
+}
+
+#teddy{
+    margin-top:20px;
+    width:180px;
+    opacity:0;
+    transform:scale(0.7);
+    transition:all 0.6s ease;
+}
+
+#teddy.show{
+    opacity:1;
+    transform:scale(1);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Hyy Muttacose 💕<br>Will You Be My Valentine?</h1>
+
+    <div class="buttons">
+        <button class="yes" onclick="yesClicked()">Yes ❤️</button>
+        <button class="no" id="noBtn">No 😢</button>
+    </div>
+
+    <img id="teddy" src="https://media.tenor.com/0AVbKGY_MxMAAAAC/teddy-bear-kiss.gif">
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const teddy = document.getElementById("teddy");
+
+function moveButton(){
+    const maxX = window.innerWidth - noBtn.offsetWidth;
+    const maxY = window.innerHeight - noBtn.offsetHeight;
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+}
+
+noBtn.addEventListener("touchstart", moveButton);
+noBtn.addEventListener("mouseover", moveButton);
+
+function yesClicked(){
+    teddy.classList.add("show");
+
+    for(let i=0;i<30;i++){
+        let heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="💖";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.fontSize=(18+Math.random()*20)+"px";
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{heart.remove();},3000);
+    }
+}
+</script>
+
+</body>
+</html>
